@@ -37,19 +37,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # app
+    'django.contrib.sites',
+    
+    # customary app
     'accounts',
     'reporting',
 
-    # third-party
+    # CSS
     'bootstrap5',
+    # third-party authentication
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # Oauth2 providers
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    # thirth-party authentication
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,9 +73,30 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #third-party authentication
+    "allauth.account.middleware.AccountMiddleware",  
 ]
 
 ROOT_URLCONF = 'auth3.urls'
+
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    # redirect URI: http://localhost:8000/accounts/google/login/callback/
+    'google': {
+        'APP': {
+            'client_id': '922075571115-a45ut7s4rv0tehvm6gn4ogbuqtk21bao.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        },
+        'SCOPE': ['profile', 'email'],
+        'EMAIL_AUTHENTICATION': True,
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+    }
+}
+
 
 TEMPLATES = [
     {
@@ -76,6 +111,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # `allauth` needs this from django
+                'django.template.context_processors.request',
             ],
         },
     },
