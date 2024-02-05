@@ -1,0 +1,33 @@
+<!-- templates/home.html -->
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <h2>Select applications:</h2>
+        <ul class="list-inline">
+        <li class="list-inline-item">
+            <a href="{% url 'owners' %}">
+                <button type="button" class="btn btn-success" data-mdb-ripple-init>
+                    Autoprocess Reports
+                </button>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="#">
+                <button type="button" class="btn btn-success" data-mdb-ripple-init>
+                    Data Staging Reports
+                </button>
+                </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="#">
+                <button type="button" class="btn btn-success" data-mdb-ripple-init>
+                    SmartScope
+                </button>
+            </a>
+        </li>
+        </ul>
+    {% endif %}
+{% endblock %}

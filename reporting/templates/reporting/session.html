@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Sessions {% endblock %}
+
+{% block content%}
+
+<h2>List of sessions</h2>
+
+<ul>
+    <li><a href="{% static 'html/index.html' %}">
+        static html in project static</a></li>
+    <li><a href="{% static 'img/tree.jpeg' %}">
+        image in project static</a></li>
+    <li><a href="{% static 'reporting/tree.jpeg' %}">
+        image in the app reporting</a></li>
+    <li><a href="{% url 'index' %}">
+        static html in view</a></li>
+</ul>
+
+{% endblock %}
