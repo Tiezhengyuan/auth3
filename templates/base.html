@@ -39,7 +39,8 @@
     {% else %}
       <p>You are not logged in</p>
       <a href="{% url 'login' %}">Log In</a> |
-      <a href="{% provider_login_url 'google' %}"> Login with Google</a>
+      <a href="{% provider_login_url 'google' %}"> Login with Google</a> |
+      <a href="{% provider_login_url 'provider' %}"> Login with custom provider</a>
     {% endif %}
   </div>
 

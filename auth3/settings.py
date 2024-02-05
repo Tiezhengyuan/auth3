@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # customary app
     'accounts',
     'reporting',
+    'provider',
 
     # CSS
     'bootstrap5',
@@ -64,6 +65,11 @@ AUTHENTICATION_BACKENDS = [
     # thirth-party authentication
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
+
+# customary oauth2
+ACCOUNT_LOGOUT_REDIRECT = 'home'
+OAUTH_SERVER_BASEURL = 'https://example.provider.com/example'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
