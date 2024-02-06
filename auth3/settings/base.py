@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -22,27 +22,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-lel_6thr+^a)4*usqi1q*e0q8i&g9ug5rag2%7q*jqe2&lk*96'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
 INSTALLED_APPS = [
+    # default
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # required by allauth
     'django.contrib.sites',
     
     # customary app
     'accounts',
     'reporting',
-    'provider',
 
     # CSS
     'bootstrap5',
@@ -65,10 +61,6 @@ AUTHENTICATION_BACKENDS = [
     # thirth-party authentication
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
-
-# customary oauth2
-ACCOUNT_LOGOUT_REDIRECT = 'home'
-OAUTH_SERVER_BASEURL = 'https://example.provider.com/example'
 
 
 MIDDLEWARE = [
@@ -103,6 +95,10 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
+STATIC_URL = 'static/'
+
 
 TEMPLATES = [
     {
@@ -125,17 +121,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'auth3.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
@@ -168,16 +153,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = 'static/'
-# development
-# define additional locations
-STATICFILES_DIRS = [BASE_DIR / "static"]
-# production
-# STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -37,10 +37,16 @@
         User: {{ user.username }}
       </p>
     {% else %}
-      <p>You are not logged in</p>
-      <a href="{% url 'login' %}">Log In</a> |
-      <a href="{% provider_login_url 'google' %}"> Login with Google</a> |
-      <a href="{% provider_login_url 'provider' %}"> Login with custom provider</a>
+      <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-1 fw-bold">Cryo-EM</h1>
+        <p>You are not logged in</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-3 gap-3">
+            Login with Django</a>
+          <a href="{% provider_login_url 'google' %}" class="btn btn-primary btn-lg px-3 gap-4">
+            Login with Google</a>
+        </div>
+      </div>
     {% endif %}
   </div>
 
