@@ -1,0 +1,7 @@
+# directory
+auth3/*/__pycache__/
+auth3/*/migrations/
+
+# files
+auth3/db.sqlite3
+
