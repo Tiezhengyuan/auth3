@@ -2,6 +2,7 @@
 back_web/*/__pycache__/
 back_web/*/migrations/
 back_web/back_web/settings/__pycache__/
+venv/
 
 # files
 back_web/db.sqlite3

@@ -24,7 +24,7 @@
               </li>
             </ul>
             <div class="mx-auto">
-              <a class="navbar-brand">Cryo-EM</a>
+              <a class="navbar-brand">Web application</a>
             </div>
             <form class="d-flex ms-auto order-5" method="post" action="{% url 'logout' %}">
               {% csrf_token %}
@@ -38,12 +38,11 @@
       </p>
     {% else %}
       <div class="px-4 py-5 my-5 text-center">
-        <h1 class="display-1 fw-bold">Cryo-EM</h1>
+        <h1 class="display-1 fw-bold">Web Application</h1>
         <p>You are not logged in</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-3 gap-3">
-            Login with Django</a>
-          <a href="{% provider_login_url 'google' %}" class="btn btn-primary btn-lg px-3 gap-4">
+          <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 g-3">Login</a>
+          <a href="{% provider_login_url 'google' %}" class="btn btn-secondary btn-lg px-3 g-4">
             Login with Google</a>
         </div>
       </div>

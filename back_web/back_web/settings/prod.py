@@ -19,6 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# Update the list who get code erro nfotifications
+ADMINS = [('admin', 'admin@email.com')]
 
 ALLOWED_HOSTS = ['example.com']
 
