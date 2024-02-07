@@ -9,5 +9,4 @@ elif os.environ.get('mode') == 'prod':
     from .prod import *
 # local testing
 else:
-    print('##local')
     from .local import *
