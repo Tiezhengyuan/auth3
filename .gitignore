@@ -6,4 +6,4 @@ venv/
 
 # files
 back_web/db.sqlite3
-
+back_web/back_web/.env

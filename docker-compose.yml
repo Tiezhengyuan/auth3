@@ -3,7 +3,8 @@ services:
   web:
     build: .
     container_name: myapp
-    command: python /myapp/back_web/manage.py runserver 0.0.0.0:8000
+    command: ["bash", "-c", " python /myapp/back_web/manage.py migrate
+      && python /myapp/back_web/manage.py runserver 0.0.0.0:8000"]
     restart: always
     volumes:
       - .:/myapp

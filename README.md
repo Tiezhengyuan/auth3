@@ -53,10 +53,20 @@ The web application could be accessed by http://127.0.0.1:8000/.
 
 #### Build image and run the app with docker container
 ```
-docker compose -f docker-compose-local.yml up --build
+docker compose up --build
 ```
 
 ### Test APP in testing server
 
+#### Build image and run the app with docker container
+```
+docker compose -f docker-compose-dev.yml up --build
+```
+
 
 ### Deploy APP in production server
+
+#### Build image and run the app with docker container
+```
+docker compose -f docker-compose-prod.yml up --build
+```

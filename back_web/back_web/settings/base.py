@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,8 +85,8 @@ SOCIALACCOUNT_PROVIDERS = {
     # redirect URI: http://localhost:8000/accounts/google/login/callback/
     'google': {
         'APP': {
-            'client_id': '922075571115-a45ut7s4rv0tehvm6gn4ogbuqtk21bao.apps.googleusercontent.com',
-            'secret': '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',
+            'client_id': str(os.environ.get('GOOGLE_CLIENT_ID')),
+            'secret': str(os.environ.get('GOOGLE_SECRET')),
             'key': ''
         },
         'SCOPE': ['profile', 'email'],
