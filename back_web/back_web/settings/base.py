@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # Oauth2 providers
     'allauth.socialaccount.providers.google',
+    #asynchronous tasks
+    'django_celery_results',
 ]
 
 SITE_ID = 1
@@ -160,3 +162,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+

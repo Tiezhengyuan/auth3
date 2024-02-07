@@ -31,6 +31,8 @@ Software engineers might as well build their own web applications based on this 
 ## Development
 
 ### local devlopment 
+
+#### Basic steps
 Let's say a new project is named as "myapp"
 
 install and build virtual environments
@@ -42,14 +44,30 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-#### Run server locally. A administration user could be created.
+Then Run server locally. A administration user could be created.
 ```
 python3 back_web/mange.py makemigrations accounts
 python3 back_web/mange.py migrate
 python3 back_web/mange.py createsuperuser
 python3 back_web/mange.py runserver
 ```
-The web application could be accessed by http://127.0.0.1:8000/.
+
+#### optional steps
+Run Redis
+```
+docker pull redis
+docker run -it --rm --name redis -p 6379:6379 redis
+```
+
+Run celery tasks if redis is launched already.
+```
+cd back_web
+celery -A back_web worker -l INFO
+```
+
+#### Access application in browser.
+
+The web application could be accessed by http://127.0.0.1:8000/ in Google Chrome or other browsers.
 
 #### Build image and run the app with docker container
 ```
