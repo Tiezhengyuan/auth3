@@ -18,13 +18,12 @@ Software engineers might as well build their own web applications based on this 
 - Data analysis: Python3
 - Deployment: Docker container
 
-### 1.2 Functions are showed as the below
+### 1.2 Features are showed as the below
 - UI template: login/logout, example home page and navigation page, etc. 
-
 - Authentication: Django user login and third-party login
 - Authorization: custom user model, permissions on views
 - APP: an example app known as reporting
-- Asynchronous tasks: celery task
+- Task execution: Asynchronous and scheduled celery tasks
 - RestFull APIs
 - Configuration for Development:  environments, docker, images in github etc.
 

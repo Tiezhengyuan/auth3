@@ -13,6 +13,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 from pathlib import Path
+from celery.schedules import crontab
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -51,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     #asynchronous tasks
     'django_celery_results',
+    'django_celery_beat',
     # TODO: confirm that in admin
     # 'redis_admin',
 ]
@@ -152,7 +156,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 
@@ -168,7 +172,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # cache
 REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
 REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
-REDIS_DB = 0
 
 # # https://redis-py.readthedocs.io/en/latest/index.html#redis.Redis
 # REDIS_SERVERS = dict(
@@ -176,9 +179,25 @@ REDIS_DB = 0
 # )
 
 
+# asynchronous tasks
 # broker of Celery task 
-CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
+CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/0"
 # results are displayed in Admin
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
+
+# define scheduled tasks
+CELERY_BEAT_SCHEDULE = {
+    'test_scheduled_task': {
+        'task': 'reporting.tasks.test_task',
+        # run task per 30 seconds
+        # 'schedule': 30.0,
+        # cronjob per 2 hours
+        "schedule": crontab(hour="1", day_of_week="*"),
+        'args': (16, 16),
+        'options': {
+            'expires': 15.0,
+        },
+    },
+}
