@@ -2,11 +2,11 @@
 
 
 
-## Introduction
+## 1. Introduction
 The Django template is used for building a web application based on Python.
 Software engineers might as well build their own web applications based on this template.
 
-### Design
+### 1.1 Design
 
 - Web interface: Django4 
 - Database: Sqlite3 or MySQL
@@ -18,7 +18,7 @@ Software engineers might as well build their own web applications based on this 
 - Data analysis: Python3
 - Deployment: Docker container
 
-### Functions are showed as the below
+### 1.2 Functions are showed as the below
 - UI template: login/logout, example home page and navigation page, etc. 
 
 - Authentication: Django user login and third-party login
@@ -28,9 +28,9 @@ Software engineers might as well build their own web applications based on this 
 - RestFull APIs
 - Configuration for Development:  environments, docker, images in github etc.
 
-## Development
+## 2. Development
 
-### local devlopment 
+### 2.1 local devlopment 
 
 #### Basic steps
 Let's say a new project is named as "myapp"
@@ -52,7 +52,9 @@ python3 back_web/mange.py createsuperuser
 python3 back_web/mange.py runserver
 ```
 
-#### optional steps
+#### Additional steps
+Those steps below are optional depending on your requirements.
+
 Run Redis
 ```
 docker pull redis
@@ -69,22 +71,41 @@ celery -A back_web worker -l INFO
 
 The web application could be accessed by http://127.0.0.1:8000/ in Google Chrome or other browsers.
 
-#### Build image and run the app with docker container
+
+
+### 2.2 container engine
+
+To delete all containers including its volumes use,
+```
+docker rm -vf $(docker ps -aq)
+docker rm <image id>
+```
+
+To delete all the images,
+```
+docker rmi -f $(docker images -aq)
+```
+
+Build image and run the app with docker container
 ```
 docker compose up --build
 ```
 
-### Test APP in testing server
+
+
+
+### 2.3 Test APP in testing server
 
 #### Build image and run the app with docker container
 ```
-docker compose -f docker-compose-dev.yml up --build
+docker compose -f docker-compose-dev.yml up --build -d
 ```
 
 
-### Deploy APP in production server
+
+### 2.4 Deploy APP in production server
 
 #### Build image and run the app with docker container
 ```
-docker compose -f docker-compose-prod.yml up --build
+docker compose -f docker-compose-prod.yml up --build -d
 ```

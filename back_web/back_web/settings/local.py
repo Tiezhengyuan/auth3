@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,17 +29,6 @@ DATABASES = {
     }
 }
 
-# cache
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB = 0
-
-# broker of Celery task 
-CELERY_BROKER = f"redis://{REDIS_HOST}:{REDIS_PORT}"
-# results are displayed in Admin
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
 
 
 # development

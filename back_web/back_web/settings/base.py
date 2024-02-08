@@ -48,10 +48,11 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # Oauth2 providers
     'allauth.socialaccount.providers.google',
     #asynchronous tasks
     'django_celery_results',
+    # TODO: confirm that in admin
+    # 'redis_admin',
 ]
 
 SITE_ID = 1
@@ -164,3 +165,20 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# cache
+REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
+REDIS_DB = 0
+
+# # https://redis-py.readthedocs.io/en/latest/index.html#redis.Redis
+# REDIS_SERVERS = dict(
+#     redis_server=dict(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB),
+# )
+
+
+# broker of Celery task 
+CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
+# results are displayed in Admin
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
