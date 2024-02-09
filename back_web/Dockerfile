@@ -1,17 +1,12 @@
 # version
-FROM python:3.11.6
+FROM --platform=linux/amd64 python:3.11.6
 ENV PYTHONBUFFERED=1
+RUN apt-get update && apt-get install -y iputils.ping
 
-# env
-ENV APP=myapp
-
-# work dir
-WORKDIR /${APP}
-
-# copy
-RUN pip install --upgrade pip
-COPY requirements.txt ./
+# install
+WORKDIR /myapp
+COPY requirements.txt /myapp/
 RUN pip install -r requirements.txt
+COPY ./back_web/ /myapp/
 
-# confirm if that is needed
-COPY . /${APP}/
+

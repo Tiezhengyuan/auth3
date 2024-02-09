@@ -25,7 +25,7 @@ Software engineers might as well build their own web applications based on this 
 - APP: an example app known as reporting
 - Task execution: Asynchronous and scheduled celery tasks
 - RestFull APIs
-- Configuration for Development:  environments, docker, images in github etc.
+- Continous integration: create image in github; run tests
 
 ## 2. Development
 
@@ -97,7 +97,9 @@ docker compose up --build
 
 #### Build image and run the app with docker container
 ```
-docker compose -f docker-compose-dev.yml up --build -d
+git clone git@github.com:Tiezhengyuan/django_template.git
+cd django_template
+podman-compose -f docker-compose-dev.yml up --build
 ```
 
 
@@ -106,5 +108,7 @@ docker compose -f docker-compose-dev.yml up --build -d
 
 #### Build image and run the app with docker container
 ```
-docker compose -f docker-compose-prod.yml up --build -d
+git clone git@github.com:Tiezhengyuan/django_template.git
+cd django_template
+podman-compose -f docker-compose-prod.yml up --build -d
 ```

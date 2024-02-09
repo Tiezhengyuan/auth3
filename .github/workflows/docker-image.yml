@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: docker image of web application
 
 on:
   push:
@@ -7,12 +7,22 @@ on:
     branches: [ "main" ]
 
 jobs:
-
-  build:
-
+  publish_image:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build ./back_web --file Dockerfile --tag myapp:$(date +%s)
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container registry
+        uses: docker/login-action@v2.2.0
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GIT_HUB_USERNAME }}
+          password: ${{ secrets.GIT_HUB_TOKEN }}
+
+      - name: Build image
+        run: docker build ./back_web -t ghcr.io/${{ secrets.GIT_HUB_USERNAME }}/myapp:latest
+
+      - name: publish image
+        run: docker push ghcr.io/${{ secrets.GIT_HUB_USERNAME }}/myapp:latest
