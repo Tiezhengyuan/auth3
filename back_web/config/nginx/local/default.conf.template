@@ -7,6 +7,7 @@ upstream uwsgi_app {
 server {
     listen          8000;
     server_name     example.com;
+
     error_log       stderr warn;
     access_log      /dev/stdout main;
 
@@ -16,6 +17,7 @@ server {
     }
 
     location /static/ {
-        alias       /myapp/back_web/static/;
+        alias           /myapp/back_web/static/;
+        auth_basic      "Authentication required";
     }
 }
